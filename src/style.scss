@@ -1,4 +1,4 @@
-@import './mixins.scss';
+@import "./mixins.scss";
 $main-color: #386c9f;
 
 html,
@@ -28,7 +28,7 @@ h1 {
 
 .blog .list .title {
   max-width: 33vw;
- @include ellipsis();
+  @include ellipsis();
   font-size: 1.6180339rem;
   line-height: 2.71828rem;
   padding-left: 1rem;
@@ -95,4 +95,3 @@ h1 {
     transform: rotate(360deg);
   }
 }
-
