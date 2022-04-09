@@ -3,7 +3,6 @@ const apiUrl = 'https://jsonplaceholder.typicode.com';
 const postsUrl = apiUrl + '/posts';
 const commentsUrl = `${apiUrl}/comments`;
 const usersUrl = `${apiUrl}/users`;
-let authorsUrl;
 
 async function getApiResponse(url) {
   const postsRequest = fetch(url);
@@ -13,7 +12,7 @@ async function getApiResponse(url) {
 
 async function setAuthor(authorId) {
   const userUrl = `${usersUrl}/${authorId}`;
-  const user = await getApiResponse(`${usersUrl}/${authorId}`);
+  const user = await getApiResponse(userUrl);
   const userElement = document.getElementById('author');
   userElement.classList.add('author');
   userElement.innerHTML = `<h3>${user.name} <small>(${user.email})</small></h3>`;
@@ -21,7 +20,7 @@ async function setAuthor(authorId) {
 
 async function loadComments(postId) {
   const postCommentsUrl = `${commentsUrl}?postId=${postId}`;
-  const comments = await getApiResponse(`${commentsUrl}?postId=${postId}`);
+  const comments = await getApiResponse(postCommentsUrl);
   const commentsContainer = document.getElementById('comments');
   commentsContainer.innerHTML = '';
   for (const comment of comments) {
@@ -38,7 +37,7 @@ async function loadComments(postId) {
 async function addListElement(post) {
   const element = document.createElement('li');
   const label = `${post.id} ${post.title}`;
-  element.innerText = `${post.id} ${post.title}`;
+  element.innerText = label;
   element.classList.add('title');
   element.addEventListener('click', async () => {
     const contentElement = document.getElementById('content');
@@ -50,7 +49,7 @@ async function addListElement(post) {
   listContainer.append(element);
 }
 
-document.addEventListener('DOMContentLoaded', event => {
+document.addEventListener('DOMContentLoaded', () => {
   const content = document.querySelector('#content');
 
   setTimeout(() => {
@@ -61,9 +60,6 @@ document.addEventListener('DOMContentLoaded', event => {
         for (const post of posts) {
           addListElement(post);
         }
-      })
-      .catch(error => {
-        loader.remove();
       })
       .finally(() => {
         const loader = document.querySelector('#spinner');
