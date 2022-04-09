@@ -5,7 +5,6 @@ const commentsUrl = `${apiUrl}/comments`;
 const usersUrl = `${apiUrl}/users`;
 let authorsUrl;
 
-
 async function getApiResponse(url) {
   const postsRequest = fetch(url);
   const response = await postsRequest;

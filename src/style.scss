@@ -1,4 +1,4 @@
-@import './mixins.scss';
+@import "./mixins.scss";
 $main-color: #689f38;
 @import "./loader.scss";
 
@@ -54,12 +54,12 @@ h1 {
   font-size: 1.6180339rem;
   flex-shrink: 1;
   flex-basis: 66vw;
-}
 
-.blog .post .author {
-  border: 1px dotted $main-color;
-  padding: 0 2rem;
-  background-color: #f1f8e9;
+  .author {
+    border: 1px dotted $main-color;
+    padding: 0 2rem;
+    background-color: #f1f8e9;
+  }
 }
 
 .blog .post .comments .comment {
@@ -68,4 +68,3 @@ h1 {
   padding: 0 1rem 0 2rem;
   margin-bottom: 1rem;
 }
-
