@@ -1,3 +1,7 @@
+@import './mixins.scss';
+$main-color: #689f38;
+@import "./loader.scss";
+
 html,
 body,
 ul,
@@ -8,7 +12,7 @@ h1 {
 }
 
 .header {
-  background-color: #689f38;
+  background-color: $main-color;
   color: #f5f5f5;
 
   .title {
@@ -24,15 +28,13 @@ h1 {
 
     .title {
       max-width: 33vw;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       font-size: 1.6180339rem;
       line-height: 2.71828rem;
       padding-left: 1rem;
       border: 1px transparent;
       flex-shrink: 0;
       flex-basis: 33vw;
+      @include ellipsis;
 
       &:nth-of-type(2n) {
         background-color: #f1f8e9;
@@ -55,7 +57,7 @@ h1 {
 }
 
 .blog .post .author {
-  border: 1px dotted #689f38;
+  border: 1px dotted $main-color;
   padding: 0 2rem;
   background-color: #f1f8e9;
 }
@@ -67,31 +69,3 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.loader,
-.loader:after {
-  border-radius: 50%;
-  width: 10em;
-  height: 10em;
-}
-
-.loader {
-  margin: 60px auto;
-  font-size: 10px;
-  position: relative;
-  text-indent: -9999em;
-  border-top: 1.1em solid rgba(104, 159, 56, 0.2);
-  border-right: 1.1em solid rgba(104, 159, 56, 0.2);
-  border-bottom: 1.1em solid rgba(104, 159, 56, 0.2);
-  border-left: 1.1em solid #689f38;
-  transform: translateZ(0);
-  animation: loading 1.1s infinite linear;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
