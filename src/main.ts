@@ -26,31 +26,31 @@ interface Comment {
   body: string;
 }
 
-async function setAuthor(authorId) {
+async function setAuthor(authorId: number) {
   const userUrl = `${usersUrl}/${authorId}`;
-  const user = await getApiResponse(userUrl);
+  const user: Author = await getApiResponse(userUrl);
   const userElement = document.getElementById('author');
   userElement.classList.add('author');
   userElement.innerHTML = `<h3>${user.name} <small>(${user.email})</small></h3>`;
 }
 
-async function loadComments(postId) {
+async function loadComments(postId: number) {
   const postCommentsUrl = `${commentsUrl}?postId=${postId}`;
-  const comments = await getApiResponse(postCommentsUrl);
+  const comments: Comment[] = await getApiResponse(postCommentsUrl);
   const commentsContainer = document.getElementById('comments');
   commentsContainer.innerHTML = '';
   for (const comment of comments) {
     const commentElement = document.createElement('div');
     commentElement.classList.add('comment');
     commentElement.innerHTML = `
-      <h4><i>${comment.name}</i> by <code>${comment.test}</code></h4>
+      <h4><i>${comment.name}</i> by <code>${comment.email}</code></h4>
       <p>${comment.body}</p>
     `;
     commentsContainer.append(commentElement);
   }
 }
 
-async function addListElement(post) {
+async function addListElement(post: Post): Promise<void> {
   const element = document.createElement('li');
   element.innerText = `${post.id} ${post.title}`;
   element.classList.add('title');
@@ -77,11 +77,11 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
   setTimeout((): void => {
     getApiResponse(postsUrl)
-      .then(posts => {
+      .then((posts: Post[]) => {
         content.innerHTML = 'Select post&hellip;';
 
         for (const post of posts) {
-          // addListElement(post);
+          addListElement(post);
         }
       })
       .finally((): void => {
