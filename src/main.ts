@@ -2,10 +2,28 @@ import {Author} from './model/author';
 import {Comment} from './model/comment';
 import {Post} from './model/post';
 
-class Api {
+interface DataProvider {
+  getPosts(): Promise<Post[]>;
+  getAuthor(authorId: number): Promise<Author>;
+  getComments(postId: number): Promise<Comment[]>
+}
+
+class Api implements DataProvider {
   postsSuffix: string = 'posts';
 
   constructor(public readonly apiUrl: string) {}
+
+  getPosts(): Promise<Post[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  getAuthor(authorId: number): Promise<Author> {
+    throw new Error('Method not implemented.');
+  }
+
+  getComments(postId: number): Promise<Comment[]> {
+    throw new Error('Method not implemented.');
+  }
 
   public getPostsUrl(): string {
     return `${this.apiUrl}/${this.postsSuffix}`;
