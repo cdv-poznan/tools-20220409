@@ -18,13 +18,13 @@ class Api implements DataProvider {
   }
 
   public getAuthor(authorId: number): Promise<Author> {
-    // const userUrl = `${usersUrl}/${authorId}`;
-    throw new Error('Method not implemented.');
+    const userUrl = `${this.apiUrl}/users/${authorId}`;
+    return this.getApiResponse(userUrl);
   }
 
   public getComments(postId: number): Promise<Comment[]> {
-    // const postCommentsUrl = `${commentsUrl}?postId=${postId}`;
-    throw new Error('Method not implemented.');
+    const postCommentsUrl = `${this.apiUrl}/comments?postId=${postId}`;
+    return this.getApiResponse(postCommentsUrl);
   }
 
   public getPostsUrl(): string {
