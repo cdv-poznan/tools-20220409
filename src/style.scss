@@ -1,0 +1,70 @@
+@import "./mixins.scss";
+$main-color: #689f38;
+@import "./loader.scss";
+
+html,
+body,
+ul,
+h1 {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+.header {
+  background-color: $main-color;
+  color: #f5f5f5;
+
+  .title {
+    padding: 1rem;
+  }
+}
+
+.blog {
+  display: flex;
+
+  .list {
+    padding-right: 1rem;
+
+    .title {
+      max-width: 33vw;
+      font-size: 1.6180339rem;
+      line-height: 2.71828rem;
+      padding-left: 1rem;
+      border: 1px transparent;
+      flex-shrink: 0;
+      flex-basis: 33vw;
+      @include ellipsis;
+
+      &:nth-of-type(2n) {
+        background-color: #f1f8e9;
+      }
+
+      &:hover {
+        background-color: #558b2f;
+        color: #f5f5f5;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.blog .post {
+  padding: 2rem;
+  font-size: 1.6180339rem;
+  flex-shrink: 1;
+  flex-basis: 66vw;
+
+  .author {
+    border: 1px dotted $main-color;
+    padding: 0 2rem;
+    background-color: #f1f8e9;
+  }
+}
+
+.blog .post .comments .comment {
+  border: 1px dotted;
+  background-color: #f1f8e9;
+  padding: 0 1rem 0 2rem;
+  margin-bottom: 1rem;
+}
